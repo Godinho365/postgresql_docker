@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSG</title>
+  <style>
+    :root {
+      --bg: #0f2439;
+      --bg2: #16324f;
+      --accent: #2e8b57;
+      --accent-hover: #36a367;
+      --text: #eef4f8;
+      --muted: #9db4c7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .brand {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      background: linear-gradient(135deg, #6fd39a, #2e8b57);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+    .links { display: flex; flex-direction: column; gap: 14px; }
+    a.btn {
+      display: block;
+      padding: 16px 20px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.1s;
+    }
+    a.btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    a.btn small { display: block; font-weight: 400; font-size: 12px; opacity: 0.85; margin-top: 4px; }
+    .footer { margin-top: 32px; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">DSG</div>
+    <p class="subtitle">Ambiente de Banco de Dados Geográfico</p>
+    <nav class="links">
+      <a class="btn" id="pgadmin-link" href="#">
+        Acessar pgAdmin
+        <small id="pgadmin-url">carregando…</small>
+      </a>
+    </nav>
+    <p class="footer">PostgreSQL 17 + PostGIS &middot; pgAdmin 4</p>
+  </main>
+
+  <script>
+    // Monta o link do pgAdmin com base no host acessado (porta 5050).
+    (function () {
+      var host = window.location.hostname || 'localhost';
+      var url = window.location.protocol + '//' + host + ':5050';
+      var link = document.getElementById('pgadmin-link');
+      link.href = url;
+      document.getElementById('pgadmin-url').textContent = url;
+    })();
+  </script>
+</body>
+</html>
