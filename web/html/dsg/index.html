@@ -71,19 +71,18 @@
     <div class="brand">DSG</div>
     <p class="subtitle">Ambiente de Banco de Dados Geográfico</p>
     <nav class="links">
-      <a class="btn" id="pgadmin-link" href="#">
+      <a class="btn" id="pgadmin-link" href="/pgadmin/">
         Acessar pgAdmin
-        <small id="pgadmin-url">carregando…</small>
+        <small id="pgadmin-url">/pgadmin/</small>
       </a>
     </nav>
     <p class="footer">PostgreSQL 17 + PostGIS &middot; pgAdmin 4</p>
   </main>
 
   <script>
-    // Monta o link do pgAdmin com base no host acessado (porta 5050).
+    // pgAdmin e servido pelo mesmo host na porta 80, sob /pgadmin/ (reverse proxy).
     (function () {
-      var host = window.location.hostname || 'localhost';
-      var url = window.location.protocol + '//' + host + ':5050';
+      var url = window.location.origin + '/pgadmin/';
       var link = document.getElementById('pgadmin-link');
       link.href = url;
       document.getElementById('pgadmin-url').textContent = url;
